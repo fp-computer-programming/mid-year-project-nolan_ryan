@@ -132,32 +132,32 @@ def game():   # defining game
     print("-"*30+"\n")
     print("    \033[1;32;40mWINS:  \033[1;37;40m%s   \033[1;31;40mLOSSES:  \033[1;37;40m%s\n" % (wins, losses))
     print("-"*30+"\n")
-    dealer_hand = deal(deck)
-    player_hand = deal(deck)
-    print ("The dealer is showing a " + str(dealer_hand[0]))
-    print ("You have a " + str(player_hand) + " for a total of " + str(total(player_hand)))
-    blackjack(dealer_hand, player_hand)
+    dealer = deal(deck)
+    player = deal(deck)
+    print ("The dealer is showing a " + str(dealer[0]))
+    print ("You have a " + str(player) + " for a total of " + str(total(player)))
+    blackjack(dealer, player)
     quit=False
     while not quit:
         choice = input("Do you want to [H]it, [S]tand, or [Q]uit: ").lower()
         # used [] so user only has to type one letter
         if choice == 'h':
-            hit(player_hand)
-            print(player_hand)
-            print("Hand total: " + str(total(player_hand)))
-            if total(player_hand)>21:
+            hit(player)
+            print(player)
+            print("Hand total: " + str(total(player)))
+            if total(player)>21:
                 print('You busted')
                 losses += 1
                 play_again()
         elif choice=='s':
-            while total(dealer_hand)<17:
-                hit(dealer_hand)
-                print(dealer_hand)
-                if total(dealer_hand)>21:
+            while total(dealer)<17:
+                hit(dealer)
+                print(dealer)
+                if total(dealer)>21:
                     print('Dealer busts, you win!')
                     wins += 1
                     play_again()
-            score(dealer_hand,player_hand)
+            score(dealer,player)
             play_again()
         elif choice == "q":
             print("Have a good one")
